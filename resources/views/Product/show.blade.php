@@ -74,7 +74,7 @@
                             @endif
                         </div>
                         <div class="details_text">
-                            <p>{{$item->getDescription()}}</p>
+                            <p class="js-desc-text" data-name="{{$item->title}}"></p>
                         </div>
 
                         <!-- Product Quantity -->

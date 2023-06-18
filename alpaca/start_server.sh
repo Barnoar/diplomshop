@@ -9,4 +9,6 @@
 rm -rf /tmp/f
 mkfifo /tmp/f
 
-cat /tmp/f | ./chat | nc -lk 9876 > /tmp/f
+cat /tmp/f | ./chat | nc -lk 9876 > /tmp/f # ответ обратно
+
+# nc -lk 9876  | ./chat #ответ в консоль

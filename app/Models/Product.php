@@ -174,27 +174,28 @@ class Product extends Model
     }
         //подключение к серверу с нейронной сетью
     public function getDescription() {
-        $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-        $result = socket_connect($sock, "127.0.0.1", 9876);
-        // if ($result) { return "$result";} else {return "$result";}
-        $bdata = "Опиши $this->title в 20 словах\n";
-        $sent_bytes = socket_send($sock,$bdata,strlen($bdata),MSG_EOF);
-        // if ($result) { return "$sent_bytes";} else {return "$sent_bytes";}
+        // $sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        // $result = socket_connect($sock, "127.0.0.1", 9876);
+        // // if ($result) { return "$result";} else {return "$result";}
+        // $bdata = "Опиши $this->title в 20 словах\n";
+        // $sent_bytes = socket_send($sock,$bdata,strlen($bdata),MSG_EOF);
+        // // if ($result) { return "$sent_bytes";} else {return "$sent_bytes";}
 
-        socket_shutdown ($sock,1);
-        $hz = "";
-        socket_set_option($sock, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>1000, "usec"=>0));
-        while (true) {
-            $out = socket_read($sock, 2048);
-            if (str_contains($out, ">")) {
-                trim($out, ">");
-                $hz = $hz . trim($out, ">");
-                break;
-            } else {
-                $hz = $hz .$out;
-            }
-        }
-        socket_close($sock);
-        return $hz;
+        // socket_shutdown ($sock,1);
+        // $hz = "";
+        // socket_set_option($sock, SOL_SOCKET, SO_RCVTIMEO, array("sec"=>1000, "usec"=>0));
+        // while (true) {
+        //     $out = socket_read($sock, 2048);
+        //     if (str_contains($out, ">")) {
+        //         trim($out, ">");
+        //         $hz = $hz . trim($out, ">");
+        //         break;
+        //     } else {
+        //         $hz = $hz .$out;
+        //     }
+        // }
+        // socket_close($sock);
+        // return $hz;
+        return "qq";
     }
 }

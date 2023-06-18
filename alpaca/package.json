@@ -1,0 +1,14 @@
+{
+  "name": "alpaca",
+  "version": "1.0.0",
+  "description": "Run a fast ChatGPT-like model locally on your device. The screencast below is not sped up and running on an M2 Macbook Air with 4GB of weights.",
+  "main": "node_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "netcat": "^1.5.0"
+  }
+}

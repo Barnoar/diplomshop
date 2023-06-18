@@ -1,0 +1,102 @@
+table {
+    max-width: 1250px;
+    text-align: left;
+    margin: auto;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+th,td {
+    text-align: center;
+}
+
+div.thumbnail img {
+    max-height: 200px;
+}
+
+/* Стилизация кол-ва товара в корзине*/
+.quantity {
+    display: flex;
+}
+
+.btn {
+    /* сброс стилей */
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    
+    /* сброс браузерных стилей для фокуса */
+    outline: none;
+    
+    /* переопределение стилей для ссылок */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+  
+    /* небольшие вертикальные отступы */
+    margin: 2px 15px;
+  
+    /* невидимая рамка */
+    border: solid 2px transparent;
+    border-radius: 12px;
+  
+    /* для установки размеров используем паддинги */
+    padding: 0.5em 1em;
+  
+    /* контрастные цвета */
+    color: #ffffff;
+    background-color: #232323;
+}
+  
+.btn:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+}
+  
+.btn:hover,
+.btn:focus {
+    color: #232323;
+    border-color: currentColor;
+    background-color: white;
+}
+  
+  /* сброс браузерных стилей для фокуса */
+.btn::-moz-focus-inner {
+    border: none;
+}
+.quantity span {
+    font-size: 25px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Выравнивание Корзины */
+.BasketContainer {
+    display: flex;
+    justify-content: center;
+}
+.Basket__title {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+.Basket__description {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Выравнивание кнопки оформить заказ */
+.btn__order {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}

@@ -1,0 +1,811 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger MusicalShop Documentation",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/admin/categories": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Отображение существующих категорий",
+                "description": "Get all Categories",
+                "operationId": "getAdminCategories",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Создание новой категории",
+                "description": "Create a new category",
+                "operationId": "createAdminCategory",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "img"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Category title",
+                                        "type": "string",
+                                        "example": "Electronics"
+                                    },
+                                    "img": {
+                                        "description": "Category image",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Category created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/admin/orders": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Отображение всех заказов",
+                "operationId": "getAdminOrders",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Order"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/admin/products": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Отображение существующих товаров",
+                "description": "Get all products",
+                "operationId": "getAdminProducts",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Product"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Создание нового товара",
+                "description": "Creates a new product",
+                "operationId": "createAdminProduct",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "price",
+                                    "in_stock",
+                                    "category_id",
+                                    "description",
+                                    "new_price",
+                                    "img"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "description": "Название продукта",
+                                        "type": "string",
+                                        "example": "Guitar"
+                                    },
+                                    "price": {
+                                        "description": "Цена товара",
+                                        "type": "number",
+                                        "example": "500"
+                                    },
+                                    "in_stock": {
+                                        "description": "Наличие товара",
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "category_id": {
+                                        "description": "ID Принадлежащей категории",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "description": {
+                                        "description": "Описание товара",
+                                        "type": "string",
+                                        "example": "Exammple desc"
+                                    },
+                                    "new_price": {
+                                        "description": "Новая цена товара",
+                                        "type": "number",
+                                        "example": "200"
+                                    },
+                                    "img": {
+                                        "description": "Фото товара",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Product created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Product"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Авторизация пользователя",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "description": "Данные для авторизации",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешная авторизация",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "user@example.com"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "format": "password",
+                                            "example": "password"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Ошибка авторизации",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Неверные учетные данные"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Регистрация нового пользователя",
+                "operationId": "registerUser",
+                "requestBody": {
+                    "description": "Данные для регистрации",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Ruslan"
+                                    },
+                                    "surname": {
+                                        "type": "string",
+                                        "example": "Farvaev"
+                                    },
+                                    "patronymic": {
+                                        "type": "string",
+                                        "example": "Rinatovich"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+79990011222"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "Ruslan@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    },
+                                    "Confirm password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Успешная регистрация"
+                    },
+                    "400": {
+                        "description": "Ошибка валидации"
+                    }
+                }
+            }
+        },
+        "/basket": {
+            "get": {
+                "tags": [
+                    "Basket"
+                ],
+                "summary": "Получить содержимое корзины",
+                "operationId": "basket",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/basket/confirm": {
+            "post": {
+                "tags": [
+                    "Basket"
+                ],
+                "summary": "Подтверждение корзины",
+                "operationId": "basketConfirm",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "123456789"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Validation Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/basket/add/{product_id}": {
+            "post": {
+                "tags": [
+                    "Basket"
+                ],
+                "summary": "Добавление товара в корзину",
+                "operationId": "basketAdd",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "description": "ID товара",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/basket/remove/{product_id}": {
+            "delete": {
+                "tags": [
+                    "Basket"
+                ],
+                "summary": "Удаление товара из корзины",
+                "operationId": "basketRemove",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "description": "ID товара",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "{cat_alias}/{product_id}": {
+            "get": {
+                "tags": [
+                    "ProductAndCategory"
+                ],
+                "summary": "Получить товар из базы данных",
+                "operationId": "getProduct",
+                "parameters": [
+                    {
+                        "name": "cat",
+                        "in": "path",
+                        "description": "Category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "description": "ID of the product",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "{cat_alias}": {
+            "get": {
+                "tags": [
+                    "ProductAndCategory"
+                ],
+                "summary": "Получить категорию из базы данных",
+                "operationId": "getCategory",
+                "parameters": [
+                    {
+                        "name": "cat_alias",
+                        "in": "path",
+                        "description": "Alias of the category",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Category": {
+                "title": "Category",
+                "description": "Модель категории",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "description": "Название",
+                        "type": "string",
+                        "example": "Category Title"
+                    },
+                    "desc": {
+                        "description": "Описание",
+                        "type": "string",
+                        "example": "Category description"
+                    },
+                    "alias": {
+                        "description": "Алиас для обращения",
+                        "type": "string",
+                        "example": "category-alias"
+                    },
+                    "img": {
+                        "description": "Image URL",
+                        "type": "string",
+                        "format": "url",
+                        "example": "http://example.com/category-image.jpg"
+                    },
+                    "created_at": {
+                        "description": "Creation date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Last update date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "products": {
+                        "description": "Сопутствующие товары"
+                    }
+                },
+                "type": "object"
+            },
+            "Order": {
+                "title": "Order",
+                "description": "Модель заказа",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Имя",
+                        "type": "string",
+                        "example": "Ruslan Farvaev"
+                    },
+                    "phone": {
+                        "description": "Номер телефона",
+                        "type": "string",
+                        "example": "+123456789"
+                    },
+                    "status": {
+                        "description": "Статус заказа",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "description": "Creation date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Last update date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "products": {
+                        "description": "Товары в заказе",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Product"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Product": {
+                "title": "Product",
+                "description": "Модель товара",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "title": {
+                        "description": "Название",
+                        "type": "string",
+                        "example": "Product Title"
+                    },
+                    "price": {
+                        "description": "Цена",
+                        "type": "number",
+                        "format": "float",
+                        "example": 100
+                    },
+                    "new_price": {
+                        "description": "Новая цена, если имеется",
+                        "type": "number",
+                        "format": "float",
+                        "example": 90
+                    },
+                    "in_stock": {
+                        "description": "В наличии(1), не в наличии(0)",
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "category_id": {
+                        "description": "ID соответствующей категории",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "description": {
+                        "description": "Описание товара",
+                        "type": "string",
+                        "example": "Product description"
+                    },
+                    "img": {
+                        "description": "Image URL",
+                        "type": "string",
+                        "format": "url",
+                        "example": "http://example.com/product-image.jpg"
+                    },
+                    "created_at": {
+                        "description": "Creation date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Last update date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/Category"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "Модель пользователя",
+                "properties": {
+                    "id": {
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Имя",
+                        "type": "string",
+                        "example": "Ruslan"
+                    },
+                    "surname": {
+                        "description": "Фамилия",
+                        "type": "string",
+                        "example": "Farvaev"
+                    },
+                    "patronymic": {
+                        "description": "Отчество",
+                        "type": "string",
+                        "example": "Rinatovich"
+                    },
+                    "phone": {
+                        "description": "Номер телефона",
+                        "type": "string",
+                        "example": "+123456789"
+                    },
+                    "email": {
+                        "description": "Почта",
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@example.com"
+                    },
+                    "password": {
+                        "description": "Пароль",
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "created_at": {
+                        "description": "Creation date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Last update date and time",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Регистрация и авторизация пользователя"
+        },
+        {
+            "name": "Basket",
+            "description": "Операции с корзиной покупок"
+        },
+        {
+            "name": "ProductAndCategory",
+            "description": "Взаимодействие с товаром и категориями"
+        }
+    ]
+}
